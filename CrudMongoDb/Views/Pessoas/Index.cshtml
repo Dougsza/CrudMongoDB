@@ -1,0 +1,59 @@
+﻿@model IEnumerable<CrudMongoDb.Models.Pessoa>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Tab</h1>
+
+<p>
+    <a asp-action="NovaPessoa">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PessoaId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CPF)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefone)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PessoaId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CPF)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefone)
+            </td>
+            <td>
+                <a asp-action="AtualizarRegistro" asp-route-pessoaId=" @item.PessoaId">Atualizar</a>
+                <form asp-action="DeletarRegistro" asp-route-pessoaId=" @item.PessoaId">
+                    <button type ="submit">Excluir</button>
+                
+                </form>
+
+                @Html.ActionLink("Edit","Edit",new { /* id=item.PrimaryKey */ }) |
+
+                @Html.ActionLink("Delete","Delete",new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
